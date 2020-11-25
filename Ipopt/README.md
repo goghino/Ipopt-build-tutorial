@@ -1,4 +1,4 @@
-# Building Ipopt from source
+# Building Ipopt From Source
 
 This section describes a process of building Ipopt from source using different configurations. In general, the process is as follows
 1. Gather all the dependencies (including their build process)
