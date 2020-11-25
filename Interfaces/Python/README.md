@@ -3,7 +3,7 @@ This tutorial covers Python's [cyipopt](https://github.com/matthias-k/cyipopt) i
 
 
 ## Prerequisities 
-It is assumed you have a working Ipopt library, ideally the one you have build from source. For detailed instruction please refer to the [tutorial](../../Ipopt).
+It is assumed you have a working Ipopt C++ library, ideally the one you have build from source. For detailed instruction please refer to the [tutorial](../../Ipopt).
 
 Next, you need the dependencies for a Python environment, namely [cython](https://cython.org/) and numpy. We use conda 4.9.2 in this tutorial.
 ```
