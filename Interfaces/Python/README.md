@@ -1,5 +1,5 @@
 # Python's Ipopt Interface
-This tutorial covers Python's [cyipopt](https://github.com/matthias-k/cyipopt) interface. Quoting the project's site "_cyipopt is a Python wrapper around Ipopt. It enables using Ipopt from the comfort of the Python programming language._" It is availabe through various package managers, including PyPi, or Anaconda, by default distributed with configuration using Mumps linear solver. Other linear solvers are usually more efficient, thus we provide a step-by-step tutorial on how to set up the Python's Ipopt interface in order to use our custom built Ipopt library (covered by tutorial [here](../../Ipopt)). 
+This tutorial covers Python's [cyipopt](https://github.com/matthias-k/cyipopt) interface. Quoting the project's site "_cyipopt is a Python wrapper around Ipopt. It enables using Ipopt from the comfort of the Python programming language._" It is availabe through various package managers, including [PyPi](https://pypi.org/project/ipopt/), or Anaconda, by default distributed with configuration using Mumps linear solver. Other linear solvers are usually more efficient, thus we provide a step-by-step tutorial on how to set up the Python's Ipopt interface in order to use our custom built Ipopt library (covered by tutorial [here](../../Ipopt)). 
 
 
 ## Prerequisities 
