@@ -20,6 +20,7 @@ At the moment of this tutorial, the HEAD was at the commit `908a3e1`. The instru
 The repository contains a lot of useful information about the process. Please read through the README files there.
 
 All the important setup happens in the file `lib/compile_osx.m`. You need to specify
+* `MATLAB` - full path to Matlab
 * `PREFIX` - path to the Ipopt C++ library install location (folder including lib, include, share sub-folders)
 * `LIBS` - linker flags for the C++ library and all its dependencies.
 
