@@ -16,6 +16,7 @@ Get the source code of the interface
 ```
 git clone https://github.com/ebertolazzi/mexIPOPT.git
 ```
+At the moment of this tutorial, the HEAD was at the commit `908a3e1`. The instructions for the following versions differ since the repository has changed since then significantly.
 The repository contains a lot of useful information about the process. Please read through the README files there.
 
 All the important setup happens in the file `lib/compile_osx.m`. You need to specify
