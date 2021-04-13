@@ -35,6 +35,25 @@ Note that in my case I had to include also path to some standard C/C++ libraries
 
 Next, execute the Matlab script and the new Ipopt library should be located in the same folder, i.e. `lib/ipopt.mexmaci64`.
 
+### Static vs dynamic linking
+
+Note that when linking dynamic Ipopt/Pardiso/MKL libraries, there will be conflict in MKL libraries used internally by Matlab (check by running `version -blas` or `version -lapack` in Matlab prompt) and by Ipopt/Pardiso. It is possible to force Matlab to use specific MKL version by setting the environment variables, i.e. as shown below, but this will most likely result in crash of the Matlab's internal routines relying on MKL.
+```
+BLAS_VERSION=$MKLROOT/lib/intel64/libmkl_rt.so \
+LAPACK_VERSION=$MKLROOT/lib/intel64/libmkl_rt.so \
+matlab -nodesktop
+```
+
+Therefore, it is recommended to link the Ipopt/Pardiso/MKL libraries statically. Do so by updating the `LIBS2` variable such that it containts all the libraries
+```
+LIBS2 = '-Wl,-Bstatic $IPOPT_HOME/lib64/libipopt.a -Wl,--start-group ...
+$PARDISO_HOME/libpardiso.a $PARDISO_HOME/libmetis510_pardiso.a ...
+$PARDISO_HOME/libmetis41_pardiso.a $PARDISO_HOME/libmetis41-P_pardiso.a ...
+$PARDISO_HOME/libamd.a $PARDISO_HOME/libpils_pardiso.a ...
+$MKLROOT/lib/intel64/libmkl_intel_lp64.a $MKLROOT/lib/intel64/libmkl_sequential.a ...
+$MKLROOT/lib/intel64/libmkl_core.a ...
+-Wl,--end-group -Wl,-Bdynamic -lgfortran -lgomp -lquadmath -lpthread -lm -ldl';
+```
 
 ## Test
 Run of the Matlab examples located in the `examples` directory. In oder to tell Matlab the location of the Ipopt's mex interface, you will have to specify it using `addpath(...)` pointing to the location of the `ipopt.mexmaci64` binary file.
@@ -50,5 +69,16 @@ Try to preload OpenMP library (see also [here](https://ch.mathworks.com/matlabce
 export LD_PRELOAD=<PATH_TO_GCC>gcc/6.3.0/lib64/libgomp.so
 ```
 
+### Segfault during the Ipopt execution
+```
+This is Ipopt version 3.13.4, running with linear solver pardiso.
+
+Number of nonzeros in equality constraint Jacobian...:        4
+Number of nonzeros in inequality constraint Jacobian.:        4
+Number of nonzeros in Lagrangian Hessian.............:       10
+
+Killed
+```
+The crash is most likely caused by mismatch between the MKL used internally in Matlab and the version used in Ipopt/Pardiso. The solution is to link statically all the libraries required by Ipopt. See the note on 'Static vs dynamic linking' above.
 
 In case of other problems, please contact me or the [author](https://github.com/ebertolazzi/mexIPOPT.git) of the mex interface.
